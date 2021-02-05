@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/src/app.js",
-    "watch": "ts-node-dev --respawn src/app.ts",
+    "watch": "source .env && ts-node-dev --respawn src/app.ts",
     "test": "echo soon!",
     "docker:debug:run": "docker-compose up --build",
     "docker:prod:build": "docker build -f docker/Dockerfile ."

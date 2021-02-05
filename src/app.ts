@@ -7,4 +7,4 @@ app.get('/', (req: Request, res: Response) => {
     res.send(`Hello ${name}!`);
 })
 
-app.listen(3000, () => console.log('API listening on port 3000'));
+app.listen(process.env.PORT, () => console.log(`API listening on port ${process.env.PORT}`));
