@@ -8,7 +8,9 @@
     "build": "tsc",
     "start": "node dist/src/app.js",
     "watch": "ts-node-dev --respawn src/app.ts",
-    "test": "echo soon!"
+    "test": "echo soon!",
+    "docker:debug:run": "docker-compose up --build",
+    "docker:prod:build": "docker build -f docker/Dockerfile ."
   },
   "dependencies": {
     "express": "4.17.1"
