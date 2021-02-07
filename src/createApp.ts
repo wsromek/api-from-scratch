@@ -1,4 +1,5 @@
 import { createApp } from './app';
+import { db } from './connection/db';
 import { createInMemoryBookRepository } from './repository/inMemoryBooksRepository';
 
 import type { BooksRepository } from './types/BooksRepository';

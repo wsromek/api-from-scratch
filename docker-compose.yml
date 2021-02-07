@@ -1,15 +1,31 @@
 version: '3.8'
 services:
-  books-api:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.debug
-    container_name: books-api
+  postgres:
+    image: postgres:12-alpine
     environment:
-      PORT: 3000
-    command: node_modules/.bin/ts-node-dev --poll --exit-child --debug --respawn --inspect=0.0.0.0:9229 src/server.ts
-    ports:
-      - 3000:3000
-      - 9229:9229
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=development_pass
+      - POSTGRES_MULTIPLE_DATABASES="books-api","books-api-testing"
     volumes:
-      - ./src:/app/src
+      - ./docker/entrypoint:/docker-entrypoint-initdb.d
+      - books-db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+#  books-api:
+#    build:
+#      context: .
+#      dockerfile: docker/Dockerfile.debug
+#    container_name: books-api
+#    environment:
+#      PORT: 3000
+#    command: node_modules/.bin/ts-node-dev --poll --exit-child --debug --respawn --inspect=0.0.0.0:9229 src/server.ts
+#    ports:
+#      - 3000:3000
+#      - 9229:9229
+#    volumes:
+#      - ./src:/app/src
+
+volumes:
+  books-db-data:
+    driver: local
