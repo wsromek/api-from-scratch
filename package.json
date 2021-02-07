@@ -13,7 +13,8 @@
     "docker:prod:build": "docker build -f docker/Dockerfile ."
   },
   "dependencies": {
-    "express": "4.17.1"
+    "express": "4.17.1",
+    "express-async-errors": "3.1.1"
   },
   "devDependencies": {
     "@types/express": "4.17.11",

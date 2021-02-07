@@ -1,7 +1,10 @@
+import 'express-async-errors';
 import express, {NextFunction, Request, Response} from "express";
 import {BooksRepository} from "./types/BooksRepository";
 import {Book} from "./types/Book";
 import {HTTP} from "./consts";
+import {notFoundHandler, serverErrorHandler} from "./error";
+import {BookNotFoundException} from "./exception/bookNotFound";
 
 export const createApp = (booksRepository: BooksRepository): express.Application => {
     const app: express.Application = express();
@@ -26,6 +29,10 @@ export const createApp = (booksRepository: BooksRepository): express.Application
 
       const book = await booksRepository.getById(id);
 
+      if (!book) {
+          throw new BookNotFoundException(id);
+      }
+
       res.status(HTTP.OK).json(book);
     });
 
@@ -46,6 +53,8 @@ export const createApp = (booksRepository: BooksRepository): express.Application
         res.sendStatus(HTTP.ACCEPTED);
     });
 
+    app.use(notFoundHandler);
+    app.use(serverErrorHandler);
 
     return app;
 }
