@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 
 const app: express.Application = express();
 
@@ -71,6 +71,4 @@ app.delete("/books/:id", (req: Request, res: Response) => {
   res.sendStatus(202);
 });
 
-app.listen(process.env.PORT, () =>
-  console.log(`API listening on port ${process.env.PORT}`)
-);
+export default app;
