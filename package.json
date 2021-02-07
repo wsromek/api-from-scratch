@@ -10,7 +10,11 @@
     "watch": "source .env && ts-node-dev --respawn src/server.ts",
     "test": "mocha -r ts-node/register test/**/*.e2e.ts",
     "docker:debug:run": "docker-compose up --build",
-    "docker:prod:build": "docker build -f docker/Dockerfile ."
+    "docker:prod:build": "docker build -f docker/Dockerfile .",
+    "db:migrate:run": "source .env && knex migrate:latest",
+    "db:migrate:make": "source .env && knex migrate:make",
+    "db:seed:make": "source .env && knex seed:make",
+    "db:seed:run": "source .env && knex seed:run"
   },
   "dependencies": {
     "express": "4.17.1",
@@ -24,6 +28,7 @@
     "@types/mocha": "8.2.0",
     "@types/supertest": "2.0.10",
     "mocha": "8.2.1",
+    "prettier": "2.2.1",
     "supertest": "6.1.3",
     "ts-node-dev": "1.1.1",
     "typescript": "4.1.3"

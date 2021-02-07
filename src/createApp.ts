@@ -1,10 +1,12 @@
-import { createApp } from './app';
-import { db } from './connection/db';
-import { createInMemoryBookRepository } from './repository/inMemoryBooksRepository';
+import { db } from "./connection/db";
+import { createApp } from "./app";
 
-import type { BooksRepository } from './types/BooksRepository';
+import { createInMemoryBookRepository } from "./repository/inMemoryBooksRepository";
+import { createPgSQLBooksRepository } from "./repository/pgSQLBooksRepository";
 
-const booksRepository: BooksRepository = createInMemoryBookRepository();
+import type { BooksRepository } from "./types/BooksRepository";
+
+const booksRepository: BooksRepository = createPgSQLBooksRepository(db);
 
 const app = createApp(booksRepository);
 
