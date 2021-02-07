@@ -19,6 +19,6 @@ jobs:
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.6.8
         with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_api_key: ${{ secrets.HEROKU_API_TOKEN }}
           heroku_email: wojciech.sromek@gmail.com
-          heroku_app_name: nodesii-js-api
+          heroku_app_name: nodesii-api-ws
